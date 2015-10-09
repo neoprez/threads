@@ -17,6 +17,12 @@ class TimeBomb extends Thread {
 				System.out.println("Starting 10 second count down...");
 				TimeBomb timer = new TimeBomb();
 				timer.start();
+				try {
+						//Main thread waits for the timer thread to die
+						timer.join();
+				} catch(InterruptedException e){
+						e.printStackTrace();
+				}
 				System.out.println("Booom!!!");
 		}
 }

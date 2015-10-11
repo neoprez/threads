@@ -8,10 +8,13 @@ class Counter {
 // Its run method increments the counte three times
 class UseCounter implements Runnable {
 		public void increment(){
-				// increments the counter and prints the value
-				// of the counter shared between threads
-				Counter.count++;
-				System.out.print(Counter.count + " ");
+				// These two statements perform read and write operations
+				// on a variable that is commonly accessed by multiple thread.
+				// So, acquire a lock before processing this "critical section"
+				synchronized(this) {
+						Counter.count++;
+						System.out.print(Counter.count + " ");
+				}
 		}
 
 		public void run() {

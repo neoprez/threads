@@ -4,17 +4,13 @@ class Counter {
 		public static long count = 0;
 }
 
-// This class implements Runnable interface
-// Its run method increments the counte three times
 class UseCounter implements Runnable {
-		public void increment(){
-				// These two statements perform read and write operations
-				// on a variable that is commonly accessed by multiple thread.
-				// So, acquire a lock before processing this "critical section"
-				synchronized(this) {
-						Counter.count++;
-						System.out.print(Counter.count + " ");
-				}
+
+		// declaring the increment synchronized instead of using
+		// a synchronized statement for a block of code inside the method
+		public synchronized void increment(){
+				Counter.count++;
+				System.out.print(Counter.count + " ");
 		}
 
 		public void run() {
